@@ -39,7 +39,8 @@ amount.addEventListener ("input", () => {
   // Funcao para converter a moeda.
   function convertcurrency(amount, price, symbol) {
     try {
-      description.textContent = `${symbol} 1 = ${price}`
+      // Exibindo a cotação da moeda selecionada.
+      description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
       // Aplica a classe que exibe o footer para mostrar o resultado.
       footer.classList.add("show-result")
 
@@ -50,4 +51,12 @@ amount.addEventListener ("input", () => {
       console.log(error)
       alert("Nao foi possivel converter. Tente novamente mais tarde.")
     }
+  }
+
+  // Formata a moeda em Real Brasileiro.
+  function formatCurrencyBRL(value) {
+    return Number(value).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })
   }
